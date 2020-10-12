@@ -1,7 +1,7 @@
 {
-  "name": "nuxt-typescript-starter",
+  "name": "project-a",
   "version": "1.0.0",
-  "description": "Nuxt + Typescript is awesome! :)",
+  "description": "Car rental, leasing & chauffeur",
   "author": "trastanechora",
   "private": true,
   "scripts": {
