@@ -2,7 +2,7 @@
   <v-layout justify-center row wrap>
     <v-parallax
       class="banner"
-      src="https://picsum.photos/1920/1080?random"
+      src="https://lajollamom.com/wp-content/uploads/2016/01/how-to-save-money-on-rental-cars.jpg"
     ></v-parallax>
     <!-- TRIP FORM Section -->
     <TripInputBox />
@@ -10,7 +10,7 @@
     <v-flex md12 sm12 xs12 mt-3>
       <v-layout justify-center row wrap>
         <v-flex xl6 md8 sm10 xs10 class="announcer">
-          <h2>Announcements:</h2>
+          <h2>{{ languageSetting.announcements }}</h2>
           <hr />
           <v-layout class="slider-content">
             <v-flex
@@ -34,7 +34,7 @@
     <v-flex md12 sm12 xs12 mt-3>
       <v-layout justify-center row wrap>
         <v-flex xl6 md8 sm10 xs10 class="announcer">
-          <h2>Promo & Deals</h2>
+          <h2>{{ languageSetting.promoAndDeals }}</h2>
           <hr />
           <v-layout class="slider-content">
             <v-flex v-for="(item, i) in deals" :key="i" lg4 md12 sm12 ma-3>
@@ -57,6 +57,7 @@ import { Vue, Component } from 'nuxt-property-decorator'
 import TripInputBox from '~/components/TripInputBox.vue'
 import AnnouncementCard from '~/components/AnnouncementCard.vue'
 import PromoCard from '~/components/PromoCard.vue'
+import { NewsItem, PromoItem } from '~/@types'
 
 @Component({
   components: {
@@ -69,7 +70,7 @@ export default class Home extends Vue {
   /* ------------------------------------
   => Local State Declaration
   ------------------------------------ */
-  announcements: any = [
+  announcements: NewsItem[] = [
     {
       color: '#1F7087',
       src: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
@@ -93,43 +94,51 @@ export default class Home extends Vue {
     }
   ]
 
-  deals: any = [
+  deals: PromoItem[] = [
     {
       color: '#1F7087',
       src: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-      title: 'Download MySejahtera',
+      title: 'Download App Get 50% off',
       amount: '-50%',
       validOn: 'October 2020'
     },
     {
       color: '#952175',
       src: 'https://cdn.vuetifyjs.com/images/cards/halcyon.png',
-      title: 'New Fresh Interface',
+      title: 'Invite Friends get Refferals',
       amount: '-25%',
       validOn: 'October 2020'
     },
     {
       color: '#952175',
       src: 'https://cdn.vuetifyjs.com/images/cards/halcyon.png',
-      title: 'Suitable for All Devices',
+      title: 'One Time Deal Prize',
       amount: '-70%',
       validOn: 'November 2020'
     },
     {
       color: '#952175',
       src: 'https://cdn.vuetifyjs.com/images/cards/halcyon.png',
-      title: 'Suitable for All Devices',
+      title: 'Take Survey get 10% off',
       amount: '-10%',
       validOn: 'December 2020'
     },
     {
       color: '#1F7087',
       src: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-      title: 'Download MySejahtera',
-      amount: '-90%',
+      title: 'New Year Free Ride!',
+      amount: '-100%',
       validOn: 'January 2021'
     }
   ]
+
+  /* ------------------------------------
+  => Setter and Getter
+  ** (Adopt store variables to local state)
+  ------------------------------------ */
+  get languageSetting(): boolean {
+    return this.$store.state.ui.languageSetting.homeContent
+  }
 }
 </script>
 

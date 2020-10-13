@@ -1,27 +1,7 @@
 <template>
   <v-app dark>
-    <v-app-bar fixed app>
-      <v-toolbar-title v-text="title" />
-      <v-spacer />
-      <v-btn text @click.stop="rightDrawer = !rightDrawer">
-        My Bookings
-      </v-btn>
-      <v-btn text @click.stop="rightDrawer = !rightDrawer">
-        Services
-      </v-btn>
-      <v-btn text @click.stop="rightDrawer = !rightDrawer">
-        About Us
-      </v-btn>
-      <v-btn text @click.stop="rightDrawer = !rightDrawer">
-        Contact
-      </v-btn>
-      <v-chip class="red lighten-1 ma-2" text-color="white">
-        <v-avatar left>
-          <v-icon dark>mdi-account-circle</v-icon>
-        </v-avatar>
-        Register / Login
-      </v-chip>
-    </v-app-bar>
+    <AppBar v-if="$vuetify.breakpoint.width > 600" />
+    <MobileAppBar v-else />
     <v-main class="no-padding">
       <v-container class="full-width">
         <nuxt />
@@ -39,35 +19,29 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-footer padless>
-      <v-card flat tile width="100%" class="red lighten-1 text-center">
-        <v-card-text>
-          <v-btn v-for="icon in icons" :key="icon" class="mx-4" icon>
-            <v-icon size="24px">
-              {{ icon }}
-            </v-icon>
-          </v-btn>
-        </v-card-text>
-
-        <v-divider></v-divider>
-
-        <v-card-text class="white--text">
-          Copyright © 2019 Agtran Travel Sdn. Bhd. <br />
-          MOTAC License No. (9005) | Registration No. (1246969-V)
-        </v-card-text>
-      </v-card>
-    </v-footer>
+    <Footer />
   </v-app>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator'
 import { SidebarMenuItem } from '~/@types'
+import AppBar from '~/components/AppBar.vue'
+import Footer from '~/components/Footer.vue'
+import MobileAppBar from '~/components/MobileAppBar.vue'
 
 @Component({
-  name: 'default'
+  name: 'default',
+  components: {
+    AppBar,
+    Footer,
+    MobileAppBar
+  }
 })
 export default class DefaultLayout extends Vue {
+  /* ------------------------------------
+  => Local State Declaration
+  ------------------------------------ */
   drawer: boolean = false
   right: boolean = false
   rightDrawer: boolean = false
@@ -89,13 +63,29 @@ export default class DefaultLayout extends Vue {
       to: '/news'
     }
   ]
+
+  /* ------------------------------------
+  => Methods
+  ------------------------------------ */
+  switchTheme(): void {
+    this.$vuetify.theme.dark = !this.$vuetify.theme.dark
+  }
+
+  switchLanguage(): void {
+    this.$vuetify.theme.dark = !this.$vuetify.theme.dark
+  }
 }
 </script>
 <style lang="stylus" scoped>
 .full-width {
   max-width: none;
+  padding-top: 0;
 }
 .no-padding {
   padding: 0 !important;
+}
+.transform-none {
+  text-transform: none;
+  letter-spacing: inherit;
 }
 </style>
