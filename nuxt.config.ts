@@ -1,6 +1,7 @@
 // "You can never understand everything. But, you should push yourself to understand the system."
 // - Ryan Dahl (Creator of Node JS)
 import { Configuration } from '@nuxt/types'
+import colors from 'vuetify/lib/util/colors'
 
 const nuxtConfig: Configuration = {
   mode: 'spa',
@@ -61,7 +62,16 @@ const nuxtConfig: Configuration = {
       dark: false,
       themes: {
         dark: {
-          primary: '#333333',
+          primary: colors.red.lighten1,
+          secondary: '#424242',
+          accent: '#82B1FF',
+          error: '#FF5252',
+          info: '#2196F3',
+          success: '#4CAF50',
+          warning: '#FFC107'
+        },
+        light: {
+          primary: colors.red.lighten1,
           secondary: '#424242',
           accent: '#82B1FF',
           error: '#FF5252',
