@@ -7,10 +7,10 @@
           <v-flex xl6 md6 xs12>
             <v-text-field
               class="mx-2"
-              label="Destination"
+              :label="languageSetting.arrivalLabel"
               :value="destination"
-              hint="Your drop off location"
-              placeholder="Where are you going?"
+              :hint="languageSetting.arrivalHint"
+              :placeholder="languageSetting.arrivalPlaceholder"
               outlined
             ></v-text-field>
           </v-flex>
@@ -26,9 +26,9 @@
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
                   v-model="startDate"
-                  label="Arrival Date"
-                  hint="Your planned date to arrive"
-                  placeholder="When?"
+                  :label="languageSetting.arrivalDateLabel"
+                  :hint="languageSetting.arrivalDateHint"
+                  :placeholder="languageSetting.arrivalDatePlaceholder"
                   appfinish-icon="mdi-calfinishar"
                   readonly
                   outlined
@@ -57,10 +57,10 @@
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
                   v-model="startTime"
-                  label="Arrival Time"
+                  :label="languageSetting.arrivalTimeLabel"
                   appfinish-icon="mdi-clock-time-four-outline"
-                  hint="Your planned time to arrive"
-                  placeholder="At what time?"
+                  :hint="languageSetting.arrivalTimeHint"
+                  :placeholder="languageSetting.arrivalTimePlaceholder"
                   readonly
                   outlined
                   class="mx-2"
@@ -82,10 +82,10 @@
           <v-flex xl6 md6 xs12>
             <v-text-field
               class="mx-2"
-              label="Destination"
+              :label="languageSetting.departureLabel"
               value=""
-              hint="Your drop off location"
-              placeholder="Where are you going?"
+              :hint="languageSetting.departureHint"
+              :placeholder="languageSetting.departureDatePlaceholder"
               outlined
             ></v-text-field>
           </v-flex>
@@ -101,9 +101,9 @@
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
                   v-model="finishDate"
-                  label="Arrival Date"
-                  hint="Your planned date to arrive"
-                  placeholder="When?"
+                  :label="languageSetting.departureDateLabel"
+                  :hint="languageSetting.departureDateHint"
+                  :placeholder="languageSetting.departureDatePlaceholder"
                   appfinish-icon="mdi-calfinishar"
                   readonly
                   outlined
@@ -132,10 +132,10 @@
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
                   v-model="finishTime"
-                  label="Arrival Time"
+                  :label="languageSetting.departureTimeLabel"
                   appfinish-icon="mdi-clock-time-four-outline"
-                  hint="Your planned time to arrive"
-                  placeholder="At what time?"
+                  :hint="languageSetting.departureTimeHint"
+                  :placeholder="languageSetting.departureTimePlaceholder"
                   readonly
                   outlined
                   class="mx-2"
@@ -152,11 +152,32 @@
             </v-menu>
           </v-flex>
         </v-layout>
+        <v-layout v-if="isCoupon" row>
+          <v-flex xs12>
+            <v-text-field
+              class="mx-2"
+              :label="languageSetting.couponLabel"
+              :value="destination"
+              :hint="languageSetting.couponHint"
+              :placeholder="languageSetting.couponPlaceholder"
+              outlined
+            ></v-text-field>
+          </v-flex>
+        </v-layout>
+        <div>
+          <span class="coupon-revealer"
+            ><small class="coupon-activator" @click="isCoupon = !isCoupon">{{
+              isCoupon
+                ? languageSetting.couponButtonActive
+                : languageSetting.couponButtonInactive
+            }}</small></span
+          >
+        </div>
       </v-card-text>
       <v-card-actions>
         <v-spacer />
         <v-btn class="transform-none book-button" color="primary" nuxt>
-          Book a Ride
+          {{ languageSetting.bookButton }}
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -171,6 +192,7 @@ export default class TripInputBox extends Vue {
   /* ------------------------------------
   => Local State Declaration
   ------------------------------------ */
+  isCoupon: boolean = false
   destination: string | null = null
   startDate: string | null = null
   startDateMenu: boolean = false
@@ -190,6 +212,14 @@ export default class TripInputBox extends Vue {
       this.$router.push('/login')
     })
   }
+
+  /* ------------------------------------
+  => Setter and Getter
+  ** (Adopt store variables to local state)
+  ------------------------------------ */
+  get languageSetting(): boolean {
+    return this.$store.state.ui.languageSetting.tripBox
+  }
 }
 </script>
 <style lang="stylus" scoped>
@@ -200,6 +230,20 @@ export default class TripInputBox extends Vue {
 .main-box {
   margin: -400px 0 0 0;
   padding: 10px;
+  opacity: 0.92;
+  .v-card__text {
+    padding-bottom: 0;
+  }
+  >>> .coupon-revealer {
+    text-align: right;
+    display: block;
+    .coupon-activator:hover {
+      color: red;
+      opacity: 0.6;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+  }
 }
 .book-button {
   width: 100%;
