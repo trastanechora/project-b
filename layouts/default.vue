@@ -24,11 +24,11 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'nuxt-property-decorator'
-import { SidebarMenuItem } from '~/@types'
-import AppBar from '~/components/AppBar.vue'
-import Footer from '~/components/Footer.vue'
-import MobileAppBar from '~/components/MobileAppBar.vue'
+import { Vue, Component } from 'nuxt-property-decorator';
+import { SidebarMenuItem } from '~/@types';
+import AppBar from '~/components/AppBar.vue';
+import Footer from '~/components/Footer.vue';
+import MobileAppBar from '~/components/MobileAppBar.vue';
 
 @Component({
   name: 'default',
@@ -42,10 +42,10 @@ export default class DefaultLayout extends Vue {
   /* ------------------------------------
   => Local State Declaration
   ------------------------------------ */
-  drawer: boolean = false
-  right: boolean = false
-  rightDrawer: boolean = false
-  title: string = 'AGTRAN'
+  drawer: boolean = false;
+  right: boolean = false;
+  rightDrawer: boolean = false;
+  title: string = 'AGTRAN';
   items: SidebarMenuItem[] = [
     {
       icon: 'mdi-apps',
@@ -62,18 +62,7 @@ export default class DefaultLayout extends Vue {
       title: 'News',
       to: '/news'
     }
-  ]
-
-  /* ------------------------------------
-  => Methods
-  ------------------------------------ */
-  switchTheme(): void {
-    this.$vuetify.theme.dark = !this.$vuetify.theme.dark
-  }
-
-  switchLanguage(): void {
-    this.$vuetify.theme.dark = !this.$vuetify.theme.dark
-  }
+  ];
 }
 </script>
 <style lang="stylus" scoped>
