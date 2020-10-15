@@ -13,32 +13,32 @@
     "test": "jest"
   },
   "dependencies": {
-    "@nuxt/typescript-runtime": "^0.4.0",
+    "@nuxt/typescript-runtime": "^2.0.0",
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/pwa": "^3.0.0-0",
     "nuxt": "^2.0.0",
     "nuxt-property-decorator": "^2.7.2",
     "stylus": "^0.54.8",
-    "stylus-loader": "^3.0.2",
+    "stylus-loader": "^4.1.1",
     "vuex": "^3.5.1"
   },
   "devDependencies": {
-    "@nuxt/typescript-build": "^0.6.0",
-    "@nuxtjs/eslint-config-typescript": "^1.0.0",
-    "@nuxtjs/eslint-module": "^1.0.0",
+    "@nuxt/typescript-build": "^2.0.3",
+    "@nuxtjs/eslint-config-typescript": "^3.0.0",
+    "@nuxtjs/eslint-module": "^3.0.0",
     "@nuxtjs/vuetify": "^1.0.0",
     "@types/jest": "^26.0.5",
     "@vue/test-utils": "^1.0.0-beta.27",
     "babel-eslint": "^10.0.1",
-    "babel-jest": "^24.1.0",
-    "eslint": "^6.1.0",
+    "babel-jest": "^26.5.2",
+    "eslint": "^7.11.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-nuxt": ">=0.4.2",
     "eslint-plugin-prettier": "^3.1.2",
-    "jest": "^24.1.0",
-    "prettier": "^1.19.1",
-    "ts-jest": "^25.0.0",
+    "jest": "^26.5.3",
+    "prettier": "^2.1.2",
+    "ts-jest": "^26.4.1",
     "vue-jest": "^4.0.0-0"
   },
   "eslintConfig": {
@@ -79,7 +79,10 @@
     "collectCoverage": true,
     "collectCoverageFrom": [
       "<rootDir>/components/**/*.vue",
-      "<rootDir>/pages/**/*.vue"
+      "<rootDir>/pages/**/*.vue",
+      "<rootDir>/layouts/*.vue",
+      "<rootDir>/@utils/*.ts",
+      "<rootDir>/store/*.ts"
     ],
     "coverageReporters": [
       "html",
@@ -88,7 +91,7 @@
     ]
   },
   "prettier": {
-    "semi": false,
+    "semi": true,
     "arrowParens": "always",
     "singleQuote": true,
     "tabWidth": 2,
