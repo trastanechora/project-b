@@ -1,9 +1,8 @@
 // "You can never understand everything. But, you should push yourself to understand the system."
 // - Ryan Dahl (Creator of Node JS)
-import { Configuration } from '@nuxt/types'
-import colors from 'vuetify/lib/util/colors'
+import colors from 'vuetify/lib/util/colors';
 
-const nuxtConfig: Configuration = {
+const nuxtConfig = {
   mode: 'spa',
   /*
    ** Headers of the page
@@ -99,6 +98,6 @@ const nuxtConfig: Configuration = {
     },
     transpile: ['vuetify/lib']
   }
-}
+};
 
-export default nuxtConfig
+export default nuxtConfig;
