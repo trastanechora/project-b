@@ -10,7 +10,7 @@
     <v-flex md12 sm12 xs12 mt-3>
       <v-layout justify-center row wrap>
         <v-flex xl6 md8 sm10 xs10 class="announcer">
-          <h2>{{ languageSetting.announcements }}</h2>
+          <h2 id="announcement-lable">{{ languageSetting.announcements }}</h2>
           <hr />
           <v-layout class="slider-content">
             <v-flex
@@ -34,7 +34,7 @@
     <v-flex md12 sm12 xs12 mt-3>
       <v-layout justify-center row wrap>
         <v-flex xl6 md8 sm10 xs10 class="announcer">
-          <h2>{{ languageSetting.promoAndDeals }}</h2>
+          <h2 id="promo-lable">{{ languageSetting.promoAndDeals }}</h2>
           <hr />
           <v-layout class="slider-content">
             <v-flex v-for="(item, i) in deals" :key="i" lg4 md12 sm12 ma-3>
@@ -53,11 +53,11 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'nuxt-property-decorator'
-import TripInputBox from '~/components/TripInputBox.vue'
-import AnnouncementCard from '~/components/AnnouncementCard.vue'
-import PromoCard from '~/components/PromoCard.vue'
-import { NewsItem, PromoItem } from '~/@types'
+import { Vue, Component } from 'nuxt-property-decorator';
+import TripInputBox from '~/components/TripInputBox.vue';
+import AnnouncementCard from '~/components/AnnouncementCard.vue';
+import PromoCard from '~/components/PromoCard.vue';
+import { NewsItem, PromoItem } from '~/@types';
 
 @Component({
   components: {
@@ -92,7 +92,7 @@ export default class Home extends Vue {
       description:
         'As our new innovation, MySejahtera apps is fit great in all of your devices. Read more!'
     }
-  ]
+  ];
 
   deals: PromoItem[] = [
     {
@@ -130,14 +130,14 @@ export default class Home extends Vue {
       amount: '-100%',
       validOn: 'January 2021'
     }
-  ]
+  ];
 
   /* ------------------------------------
   => Setter and Getter
   ** (Adopt store variables to local state)
   ------------------------------------ */
   get languageSetting(): boolean {
-    return this.$store.state.ui.languageSetting.homeContent
+    return this.$store.state.ui.languageSetting.homeContent;
   }
 }
 </script>
