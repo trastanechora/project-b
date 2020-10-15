@@ -1,13 +1,23 @@
 <template>
   <v-bottom-navigation v-model="activeItem" app fixed grow color="primary">
-    <v-btn>
-      <span class="menu-title">Home</span>
+    <v-btn id="home-mnav-btn">
+      <span class="menu-title">{{ languageSetting.bottomHome }}</span>
       <v-icon>mdi-home-outline</v-icon>
     </v-btn>
-    <v-btn>
-      <span class="menu-title">Menu</span>
-      <v-icon>mdi-home-outline</v-icon>
-    </v-btn>
+    <v-menu top offset-y>
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn id="menu-mnav-btn" dark v-bind="attrs" v-on="on">
+          <span class="menu-title">{{ languageSetting.bottomMenu }}</span>
+          <v-icon>mdi-menu</v-icon>
+        </v-btn>
+      </template>
+
+      <v-list>
+        <v-list-item v-for="(item, index) in menuItems" :key="index">
+          <v-list-item-title>{{ item }}</v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-menu>
     <v-menu
       v-model="menuSetting"
       :close-on-content-click="false"
@@ -16,6 +26,7 @@
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
+          id="setting-mnav-btn"
           depressed
           small
           fab
@@ -23,7 +34,7 @@
           v-bind="attrs"
           v-on="on"
         >
-          <span class="menu-title">Setting</span>
+          <span class="menu-title">{{ languageSetting.bottomSetting }}</span>
           <v-icon>mdi-web</v-icon>
         </v-btn>
       </template>
@@ -49,12 +60,12 @@
         <v-divider></v-divider>
 
         <v-list>
-          <v-list-item link @click="switchLanguage('EN')">
+          <v-list-item id="language-en-mnav-btn" link @click="switchLanguage('EN')">
             <v-list-item-title
               v-text="languageSetting.english"
             ></v-list-item-title>
           </v-list-item>
-          <v-list-item link @click="switchLanguage('ID')">
+          <v-list-item id="language-id-mnav-btn" link @click="switchLanguage('ID')">
             <v-list-item-title
               v-text="languageSetting.bahasa"
             ></v-list-item-title>
@@ -70,6 +81,7 @@
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
+          id="account-mnav-btn"
           depressed
           small
           fab
@@ -77,7 +89,7 @@
           v-bind="attrs"
           v-on="on"
         >
-          <span class="menu-title">Account</span>
+          <span class="menu-title">{{ languageSetting.bottomAccount }}</span>
           <v-icon>mdi-account-outline</v-icon>
         </v-btn>
       </template>
@@ -109,64 +121,75 @@
             <v-list-item-action>
               <v-switch v-model="message"></v-switch>
             </v-list-item-action>
-            <v-list-item-title>Enable messages</v-list-item-title>
+            <v-list-item-title>{{
+              languageSetting.bottomMessages
+            }}</v-list-item-title>
           </v-list-item>
 
           <v-list-item>
             <v-list-item-action>
               <v-switch v-model="hints"></v-switch>
             </v-list-item-action>
-            <v-list-item-title>Enable hints</v-list-item-title>
+            <v-list-item-title>{{
+              languageSetting.bottomHint
+            }}</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item>
+            <v-list-item-action>
+              <v-switch id="theme-mnav-btn" v-model="$vuetify.theme.dark"></v-switch>
+            </v-list-item-action>
+            <v-list-item-title>{{
+              languageSetting.bottomTheme
+            }}</v-list-item-title>
           </v-list-item>
         </v-list>
-
-        <v-card-actions>
-          <v-spacer></v-spacer>
-
-          <v-btn text @click="menuAccount = false">
-            Cancel
-          </v-btn>
-          <v-btn color="primary" text @click="menuAccount = false">
-            Save
-          </v-btn>
-        </v-card-actions>
       </v-card>
     </v-menu>
   </v-bottom-navigation>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Vue } from 'nuxt-property-decorator';
+import { HeaderLang } from '~/@types';
 
 @Component
 export default class MobileAppBar extends Vue {
   /* ------------------------------------
   => Local State Declaration
   ------------------------------------ */
-  menuSetting: boolean = false
-  menuAccount: boolean = false
-  activeItem: string = 'top'
-  message: boolean = false
-  hints: boolean = false
-  fav: boolean = true
+  menuSetting: boolean = false;
+  menuAccount: boolean = false;
+  activeItem: string = 'Home';
+  message: boolean = false;
+  hints: boolean = false;
+  fav: boolean = true;
+  menuItems: string[] = [
+    this.languageSetting.myBookings,
+    this.languageSetting.services,
+    this.languageSetting.aboutUs,
+    this.languageSetting.contact
+  ];
 
   /* ------------------------------------
   => Methods
   ------------------------------------ */
-  switchTheme(): void {
-    this.$vuetify.theme.dark = !this.$vuetify.theme.dark
-  }
-
   switchLanguage(params: string): void {
-    this.$store.dispatch('ui/changeLanguage', params)
+    this.$store.dispatch('ui/changeLanguage', params);
+    this.menuItems = [
+      this.languageSetting.myBookings,
+      this.languageSetting.services,
+      this.languageSetting.aboutUs,
+      this.languageSetting.contact
+    ];
   }
 
   /* ------------------------------------
   => Setter and Getter
   ** (Adopt store variables to local state)
   ------------------------------------ */
-  get languageSetting(): boolean {
-    return this.$store.state.ui.languageSetting.header
+  get languageSetting(): HeaderLang {
+    return this.$store.state.ui.languageSetting.header;
   }
 }
 </script>

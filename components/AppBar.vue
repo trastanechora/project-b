@@ -2,19 +2,26 @@
   <v-app-bar fixed app>
     <v-toolbar-title v-text="title" />
     <v-spacer />
-    <v-btn text class="transform-none ma-2">
+    <v-btn id="my-bookings-btn" text class="transform-none ma-2">
       {{ languageSetting.myBookings }}
     </v-btn>
-    <v-btn text class="transform-none ma-2">
+    <v-btn id="services-btn" text class="transform-none ma-2">
       {{ languageSetting.services }}
     </v-btn>
-    <v-btn text class="transform-none ma-2">
+    <v-btn id="about-us-btn" text class="transform-none ma-2">
       {{ languageSetting.aboutUs }}
     </v-btn>
-    <v-btn text class="transform-none ma-2">
+    <v-btn id="contact-btn" text class="transform-none ma-2">
       {{ languageSetting.contact }}
     </v-btn>
-    <v-btn depressed small fab class="transform-none ma-2" @click="switchTheme">
+    <v-btn
+      id="switch-theme"
+      depressed
+      small
+      fab
+      class="transform-none ma-2"
+      @click="switchTheme"
+    >
       <v-icon>mdi-theme-light-dark</v-icon>
     </v-btn>
     <v-menu
@@ -25,6 +32,7 @@
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
+          id="language-menu"
           depressed
           small
           fab
@@ -57,12 +65,12 @@
         <v-divider></v-divider>
 
         <v-list>
-          <v-list-item link @click="switchLanguage('EN')">
+          <v-list-item id="language-en" link @click="switchLanguage('EN')">
             <v-list-item-title
               v-text="languageSetting.english"
             ></v-list-item-title>
           </v-list-item>
-          <v-list-item link @click="switchLanguage('ID')">
+          <v-list-item id="language-id" link @click="switchLanguage('ID')">
             <v-list-item-title
               v-text="languageSetting.bahasa"
             ></v-list-item-title>
@@ -70,7 +78,13 @@
         </v-list>
       </v-card>
     </v-menu>
-    <v-btn depressed rounded color="primary" class="transform-none ma-2">
+    <v-btn
+      id="account-btn"
+      depressed
+      rounded
+      color="primary"
+      class="transform-none ma-2"
+    >
       <v-icon left>
         mdi-account-circle
       </v-icon>
@@ -80,17 +94,17 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
-import { SidebarMenuItem } from '~/@types'
+import { Component, Vue } from 'nuxt-property-decorator';
+import { SidebarMenuItem } from '~/@types';
 
 @Component
 export default class AppBar extends Vue {
   /* ------------------------------------
   => Local State Declaration
   ------------------------------------ */
-  menu: boolean = false
-  drawer: boolean = false
-  title: string = 'AGTRAN'
+  menu: boolean = false;
+  drawer: boolean = false;
+  title: string = 'AGTRAN';
   items: SidebarMenuItem[] = [
     {
       icon: 'mdi-apps',
@@ -107,17 +121,17 @@ export default class AppBar extends Vue {
       title: 'News',
       to: '/news'
     }
-  ]
+  ];
 
   /* ------------------------------------
   => Methods
   ------------------------------------ */
   switchTheme(): void {
-    this.$vuetify.theme.dark = !this.$vuetify.theme.dark
+    this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
   }
 
   switchLanguage(params: string): void {
-    this.$store.dispatch('ui/changeLanguage', params)
+    this.$store.dispatch('ui/changeLanguage', params);
   }
 
   /* ------------------------------------
@@ -125,7 +139,7 @@ export default class AppBar extends Vue {
   ** (Adopt store variables to local state)
   ------------------------------------ */
   get languageSetting(): boolean {
-    return this.$store.state.ui.languageSetting.header
+    return this.$store.state.ui.languageSetting.header;
   }
 }
 </script>

@@ -185,40 +185,31 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Vue } from 'nuxt-property-decorator';
 
 @Component
 export default class TripInputBox extends Vue {
   /* ------------------------------------
   => Local State Declaration
   ------------------------------------ */
-  isCoupon: boolean = false
-  destination: string | null = null
-  startDate: string | null = null
-  startDateMenu: boolean = false
-  startTime: string | null = null
-  startTimeMenu: boolean = false
-  departure: string | null = null
-  finishDate: string | null = null
-  finishDateMenu: boolean = false
-  finishTime: string | null = null
-  finishTimeMenu: boolean = false
-
-  /* ------------------------------------
-  => Methods
-  ------------------------------------ */
-  doLogout(): void {
-    this.$store.dispatch('auth/doLogout').then(() => {
-      this.$router.push('/login')
-    })
-  }
+  isCoupon: boolean = false;
+  destination: string | null = null;
+  startDate: string | null = null;
+  startDateMenu: boolean = false;
+  startTime: string | null = null;
+  startTimeMenu: boolean = false;
+  departure: string | null = null;
+  finishDate: string | null = null;
+  finishDateMenu: boolean = false;
+  finishTime: string | null = null;
+  finishTimeMenu: boolean = false;
 
   /* ------------------------------------
   => Setter and Getter
   ** (Adopt store variables to local state)
   ------------------------------------ */
   get languageSetting(): boolean {
-    return this.$store.state.ui.languageSetting.tripBox
+    return this.$store.state.ui.languageSetting.tripBox;
   }
 }
 </script>

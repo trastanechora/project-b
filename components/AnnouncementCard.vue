@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import { Component, Vue, Prop } from 'nuxt-property-decorator';
 
 @Component
 export default class AnnouncementCard extends Vue {
@@ -33,16 +33,16 @@ export default class AnnouncementCard extends Vue {
   => Props declaration
   ------------------------------------ */
   @Prop({ required: true, type: String })
-  readonly color!: string
+  readonly color!: string;
 
   @Prop({ required: true, type: String })
-  readonly src!: string
+  readonly src!: string;
 
   @Prop({ required: true, type: String })
-  readonly title!: string
+  readonly title!: string;
 
   @Prop({ required: true, type: String })
-  readonly description!: string
+  readonly description!: string;
 }
 </script>
 <style lang="stylus" scoped>

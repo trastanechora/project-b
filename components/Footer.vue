@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Vue } from 'nuxt-property-decorator';
 
 @Component
 export default class Footer extends Vue {
@@ -32,14 +32,14 @@ export default class Footer extends Vue {
     'mdi-twitter',
     'mdi-linkedin',
     'mdi-instagram'
-  ]
+  ];
 
   /* ------------------------------------
   => Setter and Getter
   ** (Adopt store variables to local state)
   ------------------------------------ */
   get languageSetting(): boolean {
-    return this.$store.state.ui.languageSetting.footer
+    return this.$store.state.ui.languageSetting.footer;
   }
 }
 </script>
