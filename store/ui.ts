@@ -1,4 +1,4 @@
-import Store, { UiState, Snackbar } from '../@types'
+import Store, { UiState } from '../@types';
 
 /* ----------------------------------------------
 => State
@@ -14,7 +14,14 @@ export const state = (): UiState => ({
       comingLang: 'Few more languages are coming soon!',
       english: 'English (EN - US)',
       bahasa: 'Bahasa Indonesia (ID)',
-      registerLogin: 'Register / Login'
+      registerLogin: 'Register / Login',
+      bottomHome: 'Home',
+      bottomMenu: 'Menu',
+      bottomSetting: 'Setting',
+      bottomAccount: 'Account',
+      bottomMessages: 'Enable Messages',
+      bottomHint: 'Enable Hint',
+      bottomTheme: 'Dark Mode'
     },
     tripBox: {
       arrivalLabel: 'Destination',
@@ -51,28 +58,13 @@ export const state = (): UiState => ({
       secondLineDisclaimer:
         'MOTAC License No. (9005) | Registration No. (1246969-V)'
     }
-  },
-  snackbar: {
-    snackbarOpen: false,
-    snackbarMessage: '',
-    snackbarColor: 'success',
-    snackTimeout: 4000
   }
-})
+});
 
 /* ----------------------------------------------
 => Mutations
 ----------------------------------------------- */
 export const mutations = {
-  closeSnackbar(state: UiState): void {
-    state.snackbar.snackbarOpen = false
-  },
-  setSnackbar(state: UiState, params: Snackbar): void {
-    state.snackbar.snackbarOpen = true
-    state.snackbar.snackbarMessage = params.snackbarMessage
-    state.snackbar.snackbarColor = params.snackbarColor
-    state.snackbar.snackTimeout = params.snackTimeout
-  },
   setEnglishAsCurrentLanguage(state: UiState): void {
     state.languageSetting.header = {
       myBookings: 'My Bookings',
@@ -83,8 +75,15 @@ export const mutations = {
       comingLang: 'Few more languages are coming soon!',
       english: 'English (EN - US)',
       bahasa: 'Bahasa Indonesia (ID)',
-      registerLogin: 'Register / Login'
-    }
+      registerLogin: 'Register / Login',
+      bottomHome: 'Home',
+      bottomMenu: 'Menu',
+      bottomSetting: 'Setting',
+      bottomAccount: 'Account',
+      bottomMessages: 'Enable Messages',
+      bottomHint: 'Enable Hint',
+      bottomTheme: 'Dark Mode'
+    };
     state.languageSetting.tripBox = {
       arrivalLabel: 'Destination',
       arrivalPlaceholder: 'Where are you going?',
@@ -110,16 +109,16 @@ export const mutations = {
       couponPlaceholder: 'Enter a promo code here',
       couponHint: 'Try your luck :)',
       bookButton: 'Book a Ride!'
-    }
+    };
     state.languageSetting.homeContent = {
       announcements: 'Announcements:',
       promoAndDeals: 'Promo & Deals'
-    }
+    };
     state.languageSetting.footer = {
       firstLineDisclaimer: 'Copyright © 2019 Agtran Travel Sdn. Bhd.',
       secondLineDisclaimer:
         'MOTAC License No. (9005) | Registration No. (1246969-V)'
-    }
+    };
   },
   setBahasaAsCurrentLanguage(state: UiState): void {
     state.languageSetting.header = {
@@ -131,8 +130,15 @@ export const mutations = {
       comingLang: 'Beberapa bahasa yang lain akan segera hadir!',
       english: 'English (EN - US)',
       bahasa: 'Bahasa Indonesia (ID)',
-      registerLogin: 'Daftar / Masuk'
-    }
+      registerLogin: 'Daftar / Masuk',
+      bottomHome: 'Beranda',
+      bottomMenu: 'Menu',
+      bottomSetting: 'Setelan',
+      bottomAccount: 'Akun',
+      bottomMessages: 'Izinkan Pesan',
+      bottomHint: 'Izinkan Petunjuk',
+      bottomTheme: 'Mode Gelap'
+    };
     state.languageSetting.tripBox = {
       arrivalLabel: 'Lokasi Tujuan',
       arrivalPlaceholder: 'Ke mana Anda akan pergi?',
@@ -158,44 +164,28 @@ export const mutations = {
       couponPlaceholder: 'Masukkan kod promosi di sini',
       couponHint: 'Coba keberuntungan Anda :)',
       bookButton: 'Pesan Kendaraan!'
-    }
+    };
     state.languageSetting.homeContent = {
       announcements: 'Pengumuman:',
       promoAndDeals: 'Promo & Diskon'
-    }
+    };
     state.languageSetting.footer = {
       firstLineDisclaimer: 'Hakcipta © 2019 Agtran Travel Sdn. Bhd.',
       secondLineDisclaimer:
         'MOTAC Lisensi No. (9005) | Registrasi No. (1246969-V)'
-    }
+    };
   }
-}
+};
 
 /* ----------------------------------------------
 => Actions
 ----------------------------------------------- */
 export const actions = {
-  clearSnackbar(store: Store<UiState> | any): void {
-    store.commit('closeSnackbar')
-  },
-  showSnackbar(store: Store<UiState> | any, params: Snackbar): void {
-    store.commit('setSnackbar', {
-      snackbarOpen: true,
-      snackbarMessage: params.snackbarMessage || '',
-      snackTimeout:
-        params.snackTimeout === 0
-          ? 0
-          : params.snackTimeout > 0
-          ? params.snackTimeout
-          : 4000,
-      snackbarColor: params.snackbarColor ? params.snackbarColor : ''
-    })
-  },
   changeLanguage(store: Store<UiState> | any, params: string): void {
     if (params === 'EN') {
-      store.commit('setEnglishAsCurrentLanguage')
+      store.commit('setEnglishAsCurrentLanguage');
     } else {
-      store.commit('setBahasaAsCurrentLanguage')
+      store.commit('setBahasaAsCurrentLanguage');
     }
   }
-}
+};

@@ -1,6 +1,6 @@
 <template>
   <v-app dark>
-    <AppBar v-if="$vuetify.breakpoint.width > 600" />
+    <AppBar v-if="$vuetify.breakpoint.width > 760" />
     <MobileAppBar v-else />
     <v-main class="no-padding">
       <v-container class="full-width">
