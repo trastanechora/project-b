@@ -1,6 +1,6 @@
 <template>
-  <v-footer padless>
-    <v-card flat tile width="100%" class="red lighten-1 text-center">
+  <v-footer padless class="transparance">
+    <v-card flat tile width="100%" class="primary text-center">
       <v-card-text>
         <v-btn v-for="icon in icons" :key="icon" class="mx-4" icon>
           <v-icon size="24px">
@@ -12,8 +12,7 @@
       <v-divider></v-divider>
 
       <v-card-text class="white--text">
-        {{ languageSetting.firstLineDisclaimer }} <br />
-        {{ languageSetting.secondLineDisclaimer }}
+        Applikasi Penghitung Jumlah Material © 2020
       </v-card-text>
     </v-card>
   </v-footer>
@@ -44,6 +43,9 @@ export default class Footer extends Vue {
 }
 </script>
 <style lang="stylus" scoped>
+.transparance {
+  opacity: 0.90;
+}
 .full-width {
   max-width: none;
 }
