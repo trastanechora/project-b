@@ -5,8 +5,40 @@ import Store, { SettingState } from '../@types';
 ----------------------------------------------- */
 export const state = (): SettingState => ({
   isTableLoading: true,
-  items: [],
-  headers: [],
+  items: [
+    {
+      name: 'ASSY A',
+      materialii: 20,
+      materialiii: 10
+    },
+    {
+      name: 'ASSY B',
+      materiali: 5,
+      materialiii: 10
+    },
+    {
+      name: 'ASSY C',
+      materiali: 20
+    }
+  ],
+  headers: [
+    {
+      text: 'name',
+      value: 'name'
+    },
+    {
+      text: 'Material I',
+      value: 'materiali'
+    },
+    {
+      text: 'Material II',
+      value: 'materialii'
+    },
+    {
+      text: 'Material III',
+      value: 'materialiii'
+    }
+  ],
   percentage: 10
 });
 

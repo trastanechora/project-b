@@ -21,6 +21,9 @@ export const mutations = {
   resetState(state: CalculationState): void {
     Object.assign(state, initialState);
   },
+  emptyHistory(state: CalculationState): void {
+    state.calculationHistories = [];
+  },
   addToHistory(state: CalculationState, processedCalculation: any): void {
     state.calculationHistories.push(processedCalculation);
   }
@@ -30,8 +33,9 @@ export const mutations = {
 => Actions
 ----------------------------------------------- */
 export const actions: any = {
-  async resetState(store: Store<any> | any): Promise<void> {
-    await store.commit('resetState');
+  async clearHistory(store: Store<any> | any): Promise<void> {
+    console.warn('clearing Hisory');
+    await store.commit('emptyHistory');
   },
   async saveToHistory(
     store: Store<any> | any,
