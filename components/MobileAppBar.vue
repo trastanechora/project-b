@@ -60,12 +60,20 @@
         <v-divider></v-divider>
 
         <v-list>
-          <v-list-item id="language-en-mnav-btn" link @click="switchLanguage('EN')">
+          <v-list-item
+            id="language-en-mnav-btn"
+            link
+            @click="switchLanguage('EN')"
+          >
             <v-list-item-title
               v-text="languageSetting.english"
             ></v-list-item-title>
           </v-list-item>
-          <v-list-item id="language-id-mnav-btn" link @click="switchLanguage('ID')">
+          <v-list-item
+            id="language-id-mnav-btn"
+            link
+            @click="switchLanguage('ID')"
+          >
             <v-list-item-title
               v-text="languageSetting.bahasa"
             ></v-list-item-title>
@@ -137,7 +145,10 @@
 
           <v-list-item>
             <v-list-item-action>
-              <v-switch id="theme-mnav-btn" v-model="$vuetify.theme.dark"></v-switch>
+              <v-switch
+                id="theme-mnav-btn"
+                v-model="$vuetify.theme.dark"
+              ></v-switch>
             </v-list-item-action>
             <v-list-item-title>{{
               languageSetting.bottomTheme
