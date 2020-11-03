@@ -3,12 +3,12 @@
 import colors from 'vuetify/lib/util/colors';
 
 const nuxtConfig = {
-  mode: 'spa',
+  ssr: false,
   /*
    ** Headers of the page
    */
   head: {
-    titleTemplate: 'Agtran' + ' | %s',
+    titleTemplate: '[Project - B]' + ' | %s',
     title: process.env.npm_package_description || '',
     meta: [
       { charset: 'utf-8' },
@@ -32,7 +32,7 @@ const nuxtConfig = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [{ src: '~/plugins/persistedstate', ssr: false }],
   /*
    ** Nuxt.js dev-modules
    */
