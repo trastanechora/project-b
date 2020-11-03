@@ -2,23 +2,11 @@
   <v-app dark>
     <AppBar v-if="$vuetify.breakpoint.width > 760" />
     <MobileAppBar v-else />
-    <v-main class="no-padding">
-      <v-container class="full-width">
+    <v-main>
+      <v-container fluid class="full-width">
         <nuxt />
       </v-container>
     </v-main>
-    <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
-      <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
-            <v-icon light>
-              mdi-repeat
-            </v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
     <Footer />
   </v-app>
 </template>
