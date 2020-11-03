@@ -4,7 +4,13 @@
       <v-app-bar-nav-icon @click.stop="miniVariant = !miniVariant" />
       <v-toolbar-title v-text="title" />
       <v-spacer />
-      <v-btn text class="transform-none ma-2"> Tutorial </v-btn>
+      <v-btn
+        text
+        class="transform-none ma-2"
+        @click="$router.push('/tutorial')"
+      >
+        Tutorial
+      </v-btn>
       <v-btn text class="transform-none ma-2"> Fitur </v-btn>
       <v-btn text class="transform-none ma-2"> Kontak Penting </v-btn>
       <v-btn text class="transform-none ma-2"> Tentang Applikasi </v-btn>

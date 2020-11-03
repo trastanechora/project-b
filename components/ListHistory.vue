@@ -1,8 +1,42 @@
 <template>
   <v-flex xs12 sm8 md6>
-    <v-card class="main-box">
+    <v-card v-if="historyData.length === 0" class="main-box">
       <v-card-text>
-        <h1 class="primary--text mb-3">Riwayat Penghitungan</h1>
+        <h3 class="primary--text mb-3 text-center">
+          Untuk saat ini Riwayat Kalkulasi masih kosong <br />
+          <v-icon size="60" color="primary" class="ma-5"
+            >mdi-select-search</v-icon
+          >
+        </h3>
+        <h5 class="mb-3 text-center">
+          <v-btn
+            color="primary"
+            class="transform-none"
+            @click="$router.push('/')"
+            >Mulai menghitung! Klik!</v-btn
+          >
+        </h5></v-card-text
+      >
+    </v-card>
+    <v-card v-else class="main-box">
+      <v-card-text>
+        <v-layout row>
+          <v-flex
+            ><h1 class="primary--text mb-3">Riwayat Penghitungan</h1></v-flex
+          >
+          <v-flex class="align-end"
+            ><v-btn
+              small
+              outlined
+              color="primary"
+              class="transform-none"
+              @click="clearHistory"
+            >
+              <v-icon left size="12">mdi-delete-forever</v-icon>Hapus
+              Riwayat</v-btn
+            ></v-flex
+          >
+        </v-layout>
         <v-layout row>
           <v-flex xl12 md12 xs12>
             <v-card
@@ -84,6 +118,10 @@ export default class TripInputBox extends Vue {
   redirectTo(id: string): void {
     this.$router.push(`/history/${id}`);
   }
+
+  clearHistory(): void {
+    this.$store.dispatch('calculation/clearHistory');
+  }
 }
 </script>
 <style lang="stylus" scoped>
@@ -111,5 +149,8 @@ export default class TripInputBox extends Vue {
 }
 .book-button {
   width: 100%;
+}
+.align-end {
+  text-align: right;
 }
 </style>

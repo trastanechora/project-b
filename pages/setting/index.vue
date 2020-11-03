@@ -33,21 +33,28 @@
         </v-flex>
         <v-flex xs3 mt-3 mb-3 class="text-right">
           <v-layout row class="mx-2">
-            <v-flex>
-              <v-btn rounded color="primary" outlined @click="onDownload">
-                <v-icon left>mdi-plus</v-icon>Download
+            <v-flex class="pa-2">
+              <v-btn
+                rounded
+                color="primary"
+                class="transform-none"
+                href="/sample_master_file.xlsx"
+                download=""
+                outlined
+              >
+                <v-icon left>mdi-cloud-download</v-icon>Download
               </v-btn>
             </v-flex>
-            <v-flex>
+            <v-flex class="pa-2">
               <v-btn
                 color="primary"
-                class="text-none"
+                class="transform-none"
                 rounded
                 outlined
                 :loading="isSelecting"
                 @click="onButtonClick"
               >
-                <v-icon left> mdi-plus </v-icon>
+                <v-icon left> mdi-cloud-upload </v-icon>
                 Upload
               </v-btn>
               <input
@@ -106,6 +113,7 @@ export default class SettingPage extends Vue {
       console.warn('workbook', workbook);
       console.warn('json', XLSX.utils.sheet_to_json(worksheet));
       console.warn('header', headers);
+      console.warn('items', items);
     };
     reader.readAsArrayBuffer(f);
   }
@@ -229,14 +237,14 @@ export default class SettingPage extends Vue {
     return combinations;
   }
 
-  onDownload(): void {
-    console.warn('Downloading!');
-    const test = XLSX.utils.json_to_sheet(this.items, {
-      header: this.plainHeader
-    });
-    XLSX.writeFile(test, 'test.xlsx');
-    console.warn('Created file', test);
-  }
+  // onDownload(): void {
+  //   console.warn('Downloading!');
+  //   const test = XLSX.utils.json_to_sheet(this.items, {
+  //     header: this.plainHeader
+  //   });
+  //   XLSX.writeFile(test, 'test.xlsx');
+  //   console.warn('Created file', test);
+  // }
 
   /* ------------------------------------
   => Setter and Getter
@@ -263,5 +271,9 @@ export default class SettingPage extends Vue {
 <style lang="stylus" scoped>
 .v-data-table >>> .table-header {
   background-color: var(--v-primary-base);
+}
+.transform-none {
+  text-transform: none;
+  letter-spacing: inherit;
 }
 </style>

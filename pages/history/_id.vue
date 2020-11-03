@@ -46,7 +46,8 @@
           <template v-slot:top>
             <v-toolbar flat>
               <v-toolbar-title class="primary--text"
-                >List Material yang Telah Dijumlahkan</v-toolbar-title
+                >List Material yang Telah Ditambahkan
+                {{ selectedHistoryData.additionPercentage }}</v-toolbar-title
               >
             </v-toolbar>
           </template>

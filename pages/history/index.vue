@@ -1,11 +1,6 @@
 <template>
   <v-layout justify-center row wrap>
-    <!-- <v-parallax
-      class="banner"
-      src="https://lajollamom.com/wp-content/uploads/2016/01/how-to-save-money-on-rental-cars.jpg"
-    ></v-parallax> -->
     <div class="banner"></div>
-    <!-- TRIP FORM Section -->
     <ListHistory :history-data="historyData" />
   </v-layout>
 </template>
@@ -19,7 +14,7 @@ import ListHistory from '~/components/ListHistory.vue';
     ListHistory
   }
 })
-export default class Home extends Vue {
+export default class History extends Vue {
   /* ------------------------------------
   => Local State Declaration
   ------------------------------------ */
@@ -27,11 +22,11 @@ export default class Home extends Vue {
   /* ------------------------------------
   => Mounted (Lifecycle)
   ------------------------------------ */
-  mounted(): void {
-    console.warn('test', this.historyData);
-    console.warn('type of', typeof this.historyData[0].id);
-    // console.warn('type of', typeof this.historyData[0].toIsoString());
-  }
+  // mounted(): void {
+  //   console.warn('test', this.historyData);
+  //   console.warn('type of', typeof this.historyData[0].id);
+  //   // console.warn('type of', typeof this.historyData[0].toIsoString());
+  // }
 
   /* ------------------------------------
   => Setter and Getter
