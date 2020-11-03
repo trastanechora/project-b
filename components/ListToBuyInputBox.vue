@@ -74,7 +74,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
-import { TableHeader } from '~/@types';
+import { TableHeader, VForm } from '~/@types';
 
 @Component
 export default class ListToBuyInputBox extends Vue {
@@ -103,12 +103,11 @@ export default class ListToBuyInputBox extends Vue {
     }
   ];
 
-  productRules: CallableFunction[] = [
-    (v: string | number): boolean | string =>
-      (!!v && v.id !== 0) || `Produk harus diisi`
+  productRules: any[] = [
+    (v: any): boolean | string => (!!v && v.id !== 0) || `Produk harus diisi`
   ];
 
-  amountRules: CallableFunction[] = [
+  amountRules: any[] = [
     (v: string | number): boolean | string => !!v || `Kuantitas harus diisi`,
     (v: string): boolean | string =>
       (v && parseFloat(v) > 0) || `Kuantitas tidak valid`

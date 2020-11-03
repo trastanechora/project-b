@@ -92,16 +92,17 @@ export default class SettingPage extends Vue {
   ------------------------------------ */
   previewFiles(e: any): void {
     const files = e.target.files;
+    const targe: any = e.target;
     const f = files[0];
     const reader = new FileReader();
-    reader.onload = async (e) => {
-      const data = new Uint8Array(e.target.result);
+    reader.onload = async () => {
+      const data = new Uint8Array(targe.result);
       const workbook = XLSX.read(data, { type: 'array' });
       const sheetName = workbook.SheetNames[0];
       /* DO SOMETHING WITH workbook HERE */
       const worksheet = workbook.Sheets[sheetName];
       const headers = await this.getHeader(worksheet);
-      this.plainHeader = headers;
+      // this.plainHeader = headers;
       const items = await XLSX.utils.sheet_to_json(worksheet);
       await this.$store.dispatch('setting/updateTable', {
         headers,
@@ -127,8 +128,9 @@ export default class SettingPage extends Vue {
       },
       { once: true }
     );
+    const uploader: any = this.$refs.uploader;
 
-    this.$refs.uploader.click();
+    uploader.click();
   }
 
   onFileChanged(e: any): void {
