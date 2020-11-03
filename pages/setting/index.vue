@@ -28,10 +28,10 @@
     </v-flex>
     <v-flex ma-2>
       <v-layout wrap>
-        <v-flex xs9 mt-3 mb-3>
+        <v-flex xs8 mt-3 mb-3>
           <h2 class="primary--text">Pengaturan Komposisi Master Material</h2>
         </v-flex>
-        <v-flex xs3 mt-3 mb-3 class="text-right">
+        <v-flex xs4 mt-3 mb-3 class="text-right">
           <v-layout row class="mx-2">
             <v-flex class="pa-2">
               <v-btn
@@ -42,7 +42,7 @@
                 download=""
                 outlined
               >
-                <v-icon left>mdi-cloud-download</v-icon>Download
+                <v-icon left>mdi-cloud-download</v-icon>Download Sampel
               </v-btn>
             </v-flex>
             <v-flex class="pa-2">
