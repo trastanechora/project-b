@@ -77,7 +77,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
-import XLSX from 'XLSX';
+import XLSX from 'xlsx';
 
 @Component
 export default class SettingPage extends Vue {
