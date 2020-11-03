@@ -6,5 +6,8 @@ import { Store } from 'vuex';
 ------------------------------------------------- */
 export default Store;
 export * from './ui';
-export * from './news';
-export * from './promo';
+export * from './product';
+export * from './material';
+export * from './combination';
+export * from './calculation';
+export * from './setting';
